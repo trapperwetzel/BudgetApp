@@ -1,0 +1,41 @@
+﻿@model List<BudgetApp.Models.BudgetInfo>
+
+@{
+    ViewData["Title"] = "Budget Overview";
+}
+
+<h2>Budget Data</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Account Total</th>
+            <th>Current Month</th>
+            <th>Monthly Income</th>
+            <th>Date Checked</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            @foreach (var budget in Model)
+            {
+                <tr>
+
+                    <td>@budget.Id</td>
+                    <td>@budget.AccountTotal.ToString("C")</td> <!-- Formats as currency -->
+                    <td>@budget.CurrentMonth</td>
+                    <td>@budget.MonthlyIncome.ToString("C")</td> <!-- Formats as currency -->
+                    <td>@budget.DateChecked.ToString("yyyy-MM-dd")</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="5">No budget data found.</td>
+            </tr>
+        }
+    </tbody>
+</table>
